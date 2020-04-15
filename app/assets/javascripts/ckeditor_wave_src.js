@@ -13,8 +13,31 @@ const newEditor = (editor_id) => {
     return false;
 
   try{
-    ClassicEditor
-      .create(ck_editor)
+    InlineEditor
+      .create(document.querySelector('#editor'), {
+        toolbar: {
+          items: [
+            'undo',
+            'redo',
+            'heading',
+            '|',
+            'alignment',                                                 // <--- ADDED
+            'bold',
+            'italic',
+            'code',
+            'underline',
+            'highlight',
+            'removeformat',
+            'link',
+            'bulletedList',
+            'imageupload',
+            'numberedList',
+            'SimpleUploadAdapter',
+            'blockQuote',
+
+          ]
+        }
+      })
       .then(editor => {
         editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
           return new UploadAdapter(loader);
